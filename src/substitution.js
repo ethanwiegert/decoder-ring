@@ -16,13 +16,16 @@ const substitutionModule = (function () {
     //itterate through to check that each character is unique
     //All the characters in the alphabet parameter must be unique. Otherwise, it should return false
     //slice and includes
+    let alphabetArr=[]
     for (let i=0; i<alphabet.length; i++){
-      let matching=""
-      if (alphabet[i]!==matching){
-        matching=alphabet[i]
-      }
-      else{return false}
-    }
+      alphabetArr.push(alphabet[i])
+     }
+     let rearrangedAlphabet=alphabetArr.sort()
+     for (let i=0; i<rearrangedAlphabet.length; i++){
+      if (rearrangedAlphabet[i]===rearrangedAlphabet[i+1]){return false}
+     }
+   
+   
     let message=input.toLowerCase()
     //write encoded portion
     if(encode){
