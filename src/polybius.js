@@ -24,7 +24,11 @@ const polybiusModule = (function () {
           let collumn=((inputLower.codePointAt(i)-97)%5)+1
           let row=parseInt((inputLower.codePointAt(i)-97)/5)+1
           //condition for above i/j
-          if (inputLower.codePointAt(i)>106){collumn-=1}
+          if (inputLower.codePointAt(i)>106){
+            if (collumn===1){collumn=5; row=row-1}
+            else{collumn=collumn-1}
+            
+          }
           encoded+=`${collumn}${row}`
         }
 
@@ -46,12 +50,13 @@ const polybiusModule = (function () {
         if (input[i]===" "){decode+=" "; i++}
           let collumn=Number(input[i])
           let row=Number(input[i+1])
+          if (collumn===4&&row===2){decode+='(i/j)'}else{
           let textPosition=(((row-1)*5+collumn+96))
           if (textPosition>106){textPosition=(((row-1)*5+collumn+96+1))}
           //condition for i/j
-          if (collumn===4&&row===2){decode+='(i/j)'}
+          
         
-          decode+=`${String.fromCodePoint(textPosition)}`
+          decode+=`${String.fromCodePoint(textPosition)}`}
           
 
         
