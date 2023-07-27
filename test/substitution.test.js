@@ -4,3 +4,54 @@
 //all alphabet characters are unique, if not return false
 //input can include special characters
 
+const {expect}=require("chai")
+const {substitution}=require("../src/substitution")
+
+describe("substitution tests", ()=>{
+    describe("substitution checks for errors", ()=>{
+        it("returns false if the alphabet characters are not all unique", ()=>{
+            const actual= substitution("hello","abcdefghijklmnopqrstuvwxya",)
+            expect(actual).to.be.false
+        })
+        it("returns false if less than 26 alphabet characters", ()=>{
+            const actual=substitution("hello", "abcdefghijklmnopqrstuvwxy")
+            expect(actual).to.be.false
+        })
+        it("returns false if more than 26 alphabet characters", ()=>{
+            const actual=substitution("hello", "abcdefghijklmnopqrstuvwxyz1")
+            expect(actual).to.be.false
+        })
+
+    })
+    describe("substitution output for encoding", ()=>{
+        it("properly encodes a message", ()=>{
+            const actual= substitution("message","plmoknijbuhvygctfxrdzeswaq")
+            const expected="ykrrpik"
+            expect(actual).to.equal(expected)
+        })
+        it("ignores capital letters", ()=>{
+            const actual=substitution("MESSAGE", "plmoknijbuhvygctfxrdzeswaq")
+            const expected="ykrrpik"
+            expect(actual).to.equal(expected)
+        })
+        it("maintains spaces", ()=>{
+            const actual=substitution("You are an excellent spy", "xoyqmcgrukswaflnthdjpzibev")
+            const expected="elp xhm xf mbymwwmfj dne"
+            expect(actual).to.equal(expected)
+        })
+        describe("substitution output for decoding", ()=>{
+            it("properly decodes a message", ()=>{
+                const actual= substitution("ykrrpik","plmoknijbuhvygctfxrdzeswaq", false)
+                const expected="message"
+                expect(actual).to.equal(expected)
+            })
+            })
+            it("maintains spaces", ()=>{
+                const actual=substitution("elp xhm xf mbymwwmfj dne", "xoyqmcgrukswaflnthdjpzibev", false)
+                const expected="you are an excellent spy"
+                expect(actual).to.equal(expected)
+            })
+
+    })
+    
+})
