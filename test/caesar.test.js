@@ -7,4 +7,7 @@
 -also check encode/decode
 
 use examples */
+//use cesar("Zebra Magazine", 3)= "cheud pdjdclqh"
+
+
 
