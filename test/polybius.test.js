@@ -9,25 +9,28 @@ const {polybius}=require("../src/polybius")
 
 describe("polybius tests", ()=>{
     describe("polybius checks for errors", ()=>{
+        //create test to check that odd numbers for decoding returns false
         it("returns false if input is even number of characters when decoding", ()=>{
             const actual= polybius("21345", false)
             expect(actual).to.be.false
         })
         it("output is still a string after encoding", ()=>{
+            //check the output for encoding is string
             const actual=polybius("hello")
             expect(actual).to.be.a('string')
         })
 
     })
     describe("polybius output for encoding", ()=>{
+        //test encoding works properly, spaces are maintained, capital letters ignored, and i and j properly encode
         it("correctly encodes a message", ()=>{
             const expected="23513434112251"
             const actual=polybius("message")
             expect(actual).to.equal(expected)
         })
-        it("spaces are maintained throughout", ()=>{
+        it("spaces are maintained throughout, capital letters ignored", ()=>{
             const expected="11 335125 23513434112251"
-            const actual=polybius("a new message")
+            const actual=polybius("A New Message")
             expect(actual).to.equal(expected)
         })
         it("correctly encodes i and j", ()=>{
@@ -38,12 +41,8 @@ describe("polybius tests", ()=>{
 
     })
     describe("polybius output for decoding", ()=>{
+        //correctly decodes a message, maintains spaces, and correctly handles i or j
         it("correctly decodes a message", ()=>{
-            const expected="message"
-            const actual=polybius("23513434112251", false)
-            expect(actual).to.equal(expected)
-        })
-        it("ignores capital letters", ()=>{
             const expected="message"
             const actual=polybius("23513434112251", false)
             expect(actual).to.equal(expected)

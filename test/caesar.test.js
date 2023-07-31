@@ -5,9 +5,9 @@
 -capital letters ignored
 -shift works and shift off alphabet works
 -also check encode/decode
+*/
 
-use examples */
-//use caesar("Zebra Magazine", 3)= "cheud pdjdclqh"
+
 const {expect}=require("chai")
 const {caesar}=require("../src/caesar")
 
