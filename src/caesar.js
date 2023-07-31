@@ -22,34 +22,35 @@ const caesarModule = (function () {
       if (sentence.codePointAt(i)<=96||sentence.codePointAt(i)>=123){encoded+=sentence[i]}
       else{
         let code=0
+        //shift and account for off alphabet
         code=sentence.codePointAt(i)+shift
         if (code>122){code-=26}
         if (code<97){code+=26}
         encoded+=String.fromCodePoint(code)
       }
     }
+    //return the shifted sentence
     return encoded
   }
-    //shift and account for off alphpabet
-    //return the shifted sentence
     //reverse the shift for encode false
-    //return the string
     if (encode===false){
-      let encoded=""
+      let decoded=""
       //ignore the capital letters
       let sentence=input.toLowerCase()
       //maintain spaces and characters(outside of 97-122)
       for (let i=0; i<sentence.length; i++){
-        if (sentence.codePointAt(i)<=96||sentence.codePointAt(i)>=123){encoded+=sentence[i]}
+        if (sentence.codePointAt(i)<=96||sentence.codePointAt(i)>=123){decoded+=sentence[i]}
         else{
+          //reverse the shift and account for off the alphabet
           let code=0
           code=sentence.codePointAt(i)-shift
           if (code>122){code-=26}
           if (code<97){code+=26}
-          encoded+=String.fromCodePoint(code)
+          decoded+=String.fromCodePoint(code)
         }
       }
-      return encoded
+      //return the decoded message
+      return decoded
     }
   }
 

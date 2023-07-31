@@ -12,6 +12,7 @@ const {expect}=require("chai")
 const {caesar}=require("../src/caesar")
 
 describe("caesar() tests", ()=>{
+    //test for returns false for shift 0, less than -25, greater than 25
     describe("caesar() checks inputs", ()=>{
         it("returns false for shift 0", ()=>{
             const actual=caesar("encoded message", 0)
@@ -29,6 +30,7 @@ describe("caesar() tests", ()=>{
     })
 
     describe("caesar() output for encoding", ()=>{
+        //test encoding works properly keeping spaces, ignore capital letters, works off alphabet
         it("returns encoded message, with negative shift", ()=>{
             const expected="wxa"
             const actual=caesar("abe", -4)
@@ -51,6 +53,7 @@ describe("caesar() tests", ()=>{
         })
     })
     describe("caesar() output for decoding", ()=>{
+        //test decoding works properly keeping spaces, ignore capital letters, works off alphabet
         it("returns encoded message, with negative shift", ()=>{
             const expected="abe"
             const actual=caesar("wxa", -4, false)
